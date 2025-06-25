@@ -23,7 +23,14 @@ class MahasiswaResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\Radio::make('jenis_kelamin')
+                    ->label('Jenis Kelamin')
+                    ->default('L')
+                    ->options([
+                        'L' => 'Laki-laki',
+                        'P' => 'Perempuan',
+                    ])
+                    ->required(),
             ]);
     }
 
@@ -43,16 +50,13 @@ class MahasiswaResource extends Resource
                 Tables\Columns\TextColumn::make('jurusan')
                     ->searchable()
                     ->sortable(),
-            ])->filters([
-                //
-            ])->headerActions([
-                Tables\Actions\CreateAction::make(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
